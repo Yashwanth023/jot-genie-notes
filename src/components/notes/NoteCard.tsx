@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/componen
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { edit, trash, plus } from "lucide-react";
+import { Edit, Trash, Plus } from "lucide-react";
 import NoteEditor from "./NoteEditor";
 
 interface NoteCardProps {
@@ -54,7 +54,7 @@ export default function NoteCard({
             className={`h-[260px] flex flex-col items-center justify-center cursor-pointer border-dashed hover:border-primary transition-colors ${className}`}
           >
             <div className="flex flex-col items-center gap-2">
-              <plus className="h-10 w-10 text-muted-foreground" />
+              <Plus className="h-10 w-10 text-muted-foreground" />
               <p className="text-muted-foreground">Create new note</p>
             </div>
           </Card>
@@ -86,7 +86,7 @@ export default function NoteCard({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="h-8 w-8">
-                  <edit className="h-4 w-4" />
+                  <Edit className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -144,3 +144,4 @@ export default function NoteCard({
     </Dialog>
   );
 }
+
