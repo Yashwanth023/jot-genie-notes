@@ -44,7 +44,7 @@ JotGenie is a modern, intuitive note-taking application designed to streamline y
 ### Installation
 ```bash
 # Clone the repository
-git clone https://your-repo-url.git
+git clone https://github.com/Yashwanth023/jot-genie-notes.git
 
 # Navigate to project directory
 cd jotgenie
