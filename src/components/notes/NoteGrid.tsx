@@ -24,7 +24,7 @@ export default function NoteGrid() {
       title,
       content,
       color,
-      user_id: "", // Will be set by the service
+      user_id: "", // Will be set by the hook
     });
   };
 
@@ -45,16 +45,26 @@ export default function NoteGrid() {
         isLoading={isCreating}
       />
       
-      {notes.map((note) => (
-        <NoteCard
-          key={note.id}
-          note={note}
-          onEdit={updateNote}
-          onDelete={deleteNote}
-          onSummarize={summarizeNote}
-          isLoading={isUpdating || isDeleting || isSummarizing}
-        />
-      ))}
+      {notes.length > 0 ? (
+        notes.map((note) => (
+          <NoteCard
+            key={note.id}
+            note={note}
+            onEdit={updateNote}
+            onDelete={deleteNote}
+            onSummarize={summarizeNote}
+            isLoading={
+              isUpdating || 
+              isDeleting || 
+              isSummarizing
+            }
+          />
+        ))
+      ) : (
+        <div className="col-span-full text-center text-muted-foreground p-6">
+          No notes yet. Create your first note to get started.
+        </div>
+      )}
     </div>
   );
 }

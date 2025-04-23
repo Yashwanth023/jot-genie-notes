@@ -11,18 +11,25 @@ export function useNotes() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
+  // Use a default user ID for local storage if no user is authenticated
+  const userId = user?.id || "default-user";
+
   const notesQuery = useQuery({
-    queryKey: ["notes"],
-    queryFn: () => (user ? noteService.getNotes(user.id) : Promise.resolve([])),
-    enabled: !!user,
+    queryKey: ["notes", userId],
+    queryFn: () => noteService.getNotes(userId),
+    enabled: true, // Always enable to work with localStorage
   });
 
   const createNoteMutation = useMutation({
     mutationFn: (noteData: Omit<Note, "id" | "created_at" | "updated_at">) => {
-      return noteService.createNote(noteData);
+      const noteWithUser = {
+        ...noteData,
+        user_id: userId,
+      };
+      return noteService.createNote(noteWithUser);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      queryClient.invalidateQueries({ queryKey: ["notes", userId] });
       toast({
         title: "Note created",
         description: "Your note has been created successfully.",
@@ -42,7 +49,7 @@ export function useNotes() {
       return noteService.updateNote(note);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      queryClient.invalidateQueries({ queryKey: ["notes", userId] });
       toast({
         title: "Note updated",
         description: "Your note has been updated successfully.",
@@ -62,7 +69,7 @@ export function useNotes() {
       return noteService.deleteNote(noteId);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      queryClient.invalidateQueries({ queryKey: ["notes", userId] });
       toast({
         title: "Note deleted",
         description: "Your note has been deleted successfully.",
@@ -86,7 +93,7 @@ export function useNotes() {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      queryClient.invalidateQueries({ queryKey: ["notes", userId] });
       toast({
         title: "Note summarized",
         description: "Your note has been summarized successfully.",

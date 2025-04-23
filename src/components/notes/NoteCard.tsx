@@ -46,6 +46,18 @@ export default function NoteCard({
       : "bg-note-yellow";
   };
 
+  const handleDelete = () => {
+    if (onDelete && note) {
+      onDelete(note.id);
+    }
+  };
+
+  const handleSummarize = () => {
+    if (onSummarize && note) {
+      onSummarize(note);
+    }
+  };
+
   if (isCreateCard) {
     return (
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -93,11 +105,11 @@ export default function NoteCard({
                 <DropdownMenuItem onClick={() => setIsOpen(true)}>
                   Edit
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => onSummarize && onSummarize(note)}>
+                <DropdownMenuItem onClick={handleSummarize}>
                   Summarize with AI
                 </DropdownMenuItem>
                 <DropdownMenuItem 
-                  onClick={() => onDelete && onDelete(note.id)}
+                  onClick={handleDelete}
                   className="text-destructive"
                 >
                   Delete
@@ -144,4 +156,3 @@ export default function NoteCard({
     </Dialog>
   );
 }
-
