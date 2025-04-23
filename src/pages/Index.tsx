@@ -1,14 +1,24 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect } from "react";
+import { useAuth } from "@/context/AuthContext";
+import { AuthStatus } from "@/types";
+import Dashboard from "./Dashboard";
+import Auth from "./Auth";
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+  const { status } = useAuth();
+  
+  // Add pulse animation while loading
+  if (status === AuthStatus.Loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
       </div>
-    </div>
-  );
+    );
+  }
+  
+  // Render dashboard if authenticated, auth page otherwise
+  return status === AuthStatus.Authenticated ? <Dashboard /> : <Auth />;
 };
 
 export default Index;
