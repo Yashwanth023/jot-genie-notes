@@ -1,6 +1,6 @@
-
 import type { Config } from "tailwindcss";
 
+// Custom dark & modern palette, night look (gray/charcoal/blue/teal gold highlights)
 export default {
 	darkMode: ["class"],
 	content: [
@@ -26,87 +26,84 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					DEFAULT: '#21D4FD',        // Light blue
+					foreground: '#041c32'
 				},
 				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					DEFAULT: '#16213e',        // Charcoal
+					foreground: '#E2FCEF',
 				},
 				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
-					foreground: 'hsl(var(--destructive-foreground))'
+					DEFAULT: '#EE4266',
+					foreground: '#fff',
 				},
 				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
+					DEFAULT: '#181F2A',
+					foreground: '#9BB5CE',
 				},
 				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
+					DEFAULT: '#21D4FD',
+					foreground: '#222831',
 				},
 				popover: {
-					DEFAULT: 'hsl(var(--popover))',
-					foreground: 'hsl(var(--popover-foreground))'
+					DEFAULT: '#0F172A',
+					foreground: '#E5E7EB',
 				},
 				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
+					DEFAULT: '#202230',
+					foreground: '#F4F6FB',
 				},
 				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
+					DEFAULT: '#181c22',
+					foreground: '#D6E1E8',
+					primary: '#ffd700',              // Gold highlight
+					'primary-foreground': '#1A1F2C',
+					accent: '#21D4FD',
+					'accent-foreground': '#181c22',
+					border: '#2B3142',
+					ring: '#21D4FD'
 				},
 				note: {
-					yellow: '#FEF7CD',
-					blue: '#D3E4FD',
-					green: '#F2FCE2',
-					pink: '#FFDEE2',
-					purple: '#E5DEFF',
-					peach: '#FDE1D3',
+					yellow: '#323223',  // More subtle card colors for dark
+					blue: '#273c52',
+					green: '#233635',
+					pink: '#352936',
+					purple: '#302742',
+					peach: '#352e28',
 				}
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				lg: '1rem',
+				md: '0.75rem',
+				sm: '0.5rem'
 			},
 			keyframes: {
+				"fade-in": {
+					from: { opacity: "0", transform: "translateY(10px)" },
+					to: { opacity: "1", transform: "translateY(0)" }
+				},
+				"fade-out": {
+					from: { opacity: "1", transform: "translateY(0)" },
+					to: { opacity: "0", transform: "translateY(10px)" }
+				},
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				},
-				'fade-in': {
-					from: {
-						opacity: '0',
-					},
-					to: {
-						opacity: '1',
-					},
-				}
 			},
 			animation: {
+				"fade-in": "fade-in 0.3s ease-out",
+				"fade-out": "fade-out 0.3s ease-out",
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.3s ease-in-out'
+			},
+			boxShadow: {
+				lg: "0 8px 32px rgba(21,25,35,0.30)",
+				card: "0 2px 16px 0 rgba(33,212,253,0.12), 0 0.5px 2px 0 rgba(21, 212, 253, 0.04)",
 			}
 		}
 	},

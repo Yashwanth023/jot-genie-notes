@@ -1,14 +1,17 @@
 
 import AuthTabs from "@/components/auth/AuthTabs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Auth() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gradient-to-b from-background to-muted/50">
-      <div className="w-full max-w-md space-y-6">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-10 bg-gradient-to-br from-[#202230] via-[#141726] to-[#181c22]">
+      <div className="w-full max-w-md space-y-6 animate-fade-in">
         <div className="space-y-2 text-center">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">JotGenie</h1>
-          <p className="text-muted-foreground">Your AI-powered notes app</p>
+          <h1 className="text-4xl font-extrabold tracking-tighter text-gradient-primary mb-1">
+            <span className="gold-text">JotGenie</span>
+          </h1>
+          <p className="text-muted-foreground text-lg">
+            Night-mode AI-powered notes app
+          </p>
         </div>
         <AuthTabs />
       </div>
